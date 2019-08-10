@@ -18,7 +18,6 @@ import com.gzeinnumer.recyclerviewmvpnewsapi.activity.DetailActivity;
 import com.gzeinnumer.recyclerviewmvpnewsapi.model.ArticlesItem;
 
 import java.util.List;
-//todo 4 buat konctruk dan implement
 public class AdapterNews extends RecyclerView.Adapter<AdapterNews.MyHolder> {
     private Context context;
     private List<ArticlesItem> list;
@@ -28,7 +27,6 @@ public class AdapterNews extends RecyclerView.Adapter<AdapterNews.MyHolder> {
         this.list = list;
     }
 
-    //todo 10 isi semua ini
     @NonNull
     @Override
     public MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -41,7 +39,6 @@ public class AdapterNews extends RecyclerView.Adapter<AdapterNews.MyHolder> {
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //todo 18
                 Intent intent = new Intent(context, DetailActivity.class);
                 intent.putExtra(DetailActivity.DATA, list.get(position));
                 intent.putExtra(DetailActivity.DATAS, list.get(position).getSource());

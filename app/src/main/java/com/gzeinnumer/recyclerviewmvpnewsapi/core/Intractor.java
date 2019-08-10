@@ -14,13 +14,12 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-//todo 8
 public class Intractor implements GetDataNews.Interactor {
     private GetDataNews.onGetDataListener onGetDataListener;
     List<ArticlesItem> listNews = new ArrayList<>();
 
     public Intractor(GetDataNews.onGetDataListener onGetDataListener) {
-        this.onGetDataListener = onGetDataListener;
+        this.onGetDataListener = onGetDataListener;  //todo 8 yang dibawa todo5
     }
 
 
@@ -32,14 +31,14 @@ public class Intractor implements GetDataNews.Interactor {
                 if (response.body().getArticles().size()>0){
                     listNews= response.body().getArticles();
                     Log.d("Data", "Refreshed");
-                    onGetDataListener.onSuccess("List Size"+listNews.size(), listNews);
+                    onGetDataListener.onSuccess("List Size"+listNews.size(), listNews);//todo 9 bawa value ke todo10
                 }
             }
 
             @Override
             public void onFailure(Call<ResponseNews> call, Throwable t) {
                 Log.v("Error", t.getMessage());
-                onGetDataListener.onFailure(t.getMessage());
+                onGetDataListener.onFailure(t.getMessage());//todo 9 bawa value ke todo10
             }
         });
     }

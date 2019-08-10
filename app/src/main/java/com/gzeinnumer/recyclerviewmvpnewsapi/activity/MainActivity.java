@@ -15,43 +15,35 @@ import com.gzeinnumer.recyclerviewmvpnewsapi.model.ArticlesItem;
 
 import java.util.List;
 
-//todo 15 implements
 public class MainActivity extends AppCompatActivity implements GetDataNews.View{
 
-    //todo 2
     RecyclerView recyclerView;
-    //todo 12
-    private Presenter presenter;
+    private Presenter presenter;//todo 1
     AdapterNews adapterNews;
     LinearLayoutManager linearLayoutManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //todo 3
         recyclerView = findViewById(R.id.rv);
-        //todo 13
         initObject();
     }
 
-    //todo 14
     private void initObject() {
-        presenter = new Presenter(this);
-        presenter.getDataFromURL(getApplicationContext(), "us","e5430ac2a413408aaafdf60bfa27a874");
+        presenter = new Presenter(this);//todo 2 membawa MainActivity dan GetDataNews.View
+        presenter.getDataFromURL(getApplicationContext(), "us","e5430ac2a413408aaafdf60bfa27a874");//todo 3 pakai funsi ini yang di implementkan Presenter
         linearLayoutManager = new LinearLayoutManager(this);
     }
 
-    //todo 16
     @Override
-    public void onGetDataSuccess(String message, List<ArticlesItem> list) {
-        adapterNews = new AdapterNews(getApplicationContext(), list);
+    public void onGetDataSuccess(String message, List<ArticlesItem> list) { //todo 12 params di bawa oleh todo 11
+        adapterNews = new AdapterNews(getApplicationContext(), list); //todo 13 silahkan pakai data
         recyclerView.setAdapter(adapterNews);
         recyclerView.setLayoutManager(linearLayoutManager);
     }
 
-    //todo 17
     @Override
-    public void onGetDataFailure(String message) {
-        Log.d("status", message);
+    public void onGetDataFailure(String message) {//todo 12 params di bawa oleh todo 11
+        Log.d("status", message);//todo 13 silahkan pakai data
     }
 }

@@ -6,7 +6,6 @@ import com.gzeinnumer.recyclerviewmvpnewsapi.model.ArticlesItem;
 
 import java.util.List;
 
-//todo 7
 public interface GetDataNews {
     interface View{
         void onGetDataSuccess(String message, List<ArticlesItem> list);
