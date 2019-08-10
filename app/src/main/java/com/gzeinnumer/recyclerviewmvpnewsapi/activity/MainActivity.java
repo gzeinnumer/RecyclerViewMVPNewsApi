@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity implements GetDataNews.View{
     //todo 12
     private Presenter presenter;
     AdapterNews adapterNews;
+    LinearLayoutManager linearLayoutManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements GetDataNews.View{
     private void initObject() {
         presenter = new Presenter(this);
         presenter.getDataFromURL(getApplicationContext(), "us","e5430ac2a413408aaafdf60bfa27a874");
+        linearLayoutManager = new LinearLayoutManager(this);
     }
 
     //todo 16
@@ -44,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements GetDataNews.View{
     public void onGetDataSuccess(String message, List<ArticlesItem> list) {
         adapterNews = new AdapterNews(getApplicationContext(), list);
         recyclerView.setAdapter(adapterNews);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setLayoutManager(linearLayoutManager);
     }
 
     //todo 17

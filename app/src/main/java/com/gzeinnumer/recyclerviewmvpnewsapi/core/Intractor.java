@@ -18,7 +18,6 @@ import retrofit2.Response;
 public class Intractor implements GetDataNews.Interactor {
     private GetDataNews.onGetDataListener onGetDataListener;
     List<ArticlesItem> listNews = new ArrayList<>();
-    List<String> titleNews = new ArrayList<>();
 
     public Intractor(GetDataNews.onGetDataListener onGetDataListener) {
         this.onGetDataListener = onGetDataListener;
@@ -32,11 +31,8 @@ public class Intractor implements GetDataNews.Interactor {
             public void onResponse(Call<ResponseNews> call, Response<ResponseNews> response) {
                 if (response.body().getArticles().size()>0){
                     listNews= response.body().getArticles();
-                    for (int i=0; i<listNews.size(); i++){
-                        titleNews.add(listNews.get(i).getTitle());
-                    }
                     Log.d("Data", "Refreshed");
-                    onGetDataListener.onSuccess("List Size"+titleNews.size(), listNews);
+                    onGetDataListener.onSuccess("List Size"+listNews.size(), listNews);
                 }
             }
 

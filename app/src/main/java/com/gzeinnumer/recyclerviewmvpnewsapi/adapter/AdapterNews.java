@@ -5,12 +5,14 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.gzeinnumer.recyclerviewmvpnewsapi.R;
 import com.gzeinnumer.recyclerviewmvpnewsapi.activity.DetailActivity;
 import com.gzeinnumer.recyclerviewmvpnewsapi.model.ArticlesItem;
@@ -46,6 +48,7 @@ public class AdapterNews extends RecyclerView.Adapter<AdapterNews.MyHolder> {
                 context.startActivity(intent);
             }
         });
+        Glide.with(context).load(list.get(position).getUrlToImage()).into(holder.img);
         holder.textView.setText(list.get(position).getTitle());
     }
 
@@ -57,10 +60,12 @@ public class AdapterNews extends RecyclerView.Adapter<AdapterNews.MyHolder> {
     public class MyHolder extends RecyclerView.ViewHolder {
         CardView cardView;
         TextView textView;
+        ImageView img;
         public MyHolder(@NonNull View itemView) {
             super(itemView);
             cardView = itemView.findViewById(R.id.cv);
             textView = itemView.findViewById(R.id.title_item);
+            img = itemView.findViewById(R.id.img_item);
         }
     }
 }

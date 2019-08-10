@@ -11,10 +11,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.gzeinnumer.recyclerviewmvpnewsapi.R;
 import com.gzeinnumer.recyclerviewmvpnewsapi.model.ArticlesItem;
 import com.gzeinnumer.recyclerviewmvpnewsapi.model.Source;
-import com.squareup.picasso.Picasso;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -59,7 +59,7 @@ public class DetailActivity extends AppCompatActivity {
     //todo 23
     @SuppressLint("SetTextI18n")
     private void initDataToView() {
-        Picasso.get().load(articlesItem.getUrlToImage()).into(img);
+        Glide.with(DetailActivity.this).load(articlesItem.getUrlToImage()).into(img);
         tvTitle.setText(articlesItem.getTitle());
         tvSource.setText(getString(R.string.source)+source.getName());
         tvAuthor.setText(getString(R.string.aut)+articlesItem.getAuthor());
@@ -71,6 +71,7 @@ public class DetailActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String url = articlesItem.getUrl();
                 Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 i.setData(Uri.parse(url));
                 startActivity(i);
             }
